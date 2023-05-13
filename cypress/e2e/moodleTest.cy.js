@@ -4,16 +4,16 @@
         const INVALID_PASSWORD = 'invalidpassword'
 
         // Enter valid username and password
-        const VALID_LOGIN = 'valid'
-        const VALID_PASSWORD = 'valid'
+        const VALID_LOGIN = 'Enter valid username and password'
+        const VALID_PASSWORD = 'Enter valid username and password'
 
         describe('Unsuccessful Login', () => {
             it('Should show an error message', () => {
             cy.visit(LOGIN_URL)
-            cy.get('input[id="UserName"]').type(INVALID_LOGIN)
-            cy.get('input[id="Password"]').type(INVALID_PASSWORD)
+            cy.get('input[id="username"]').type(INVALID_LOGIN)
+            cy.get('input[id="password"]').type(INVALID_PASSWORD)
             cy.get('button[id="loginbtn"]').click()
-            cy.get('div[id="loginerrormessage"]').should('have.css', 'display', 'block')
+            cy.get('#loginerrormessage').should('be.visible')
             })
         })
 
@@ -23,8 +23,8 @@
             cy.visit(LOGIN_URL)
             // Enter valid username and password
 
-            cy.get('input[id="UserName"]').type(VALID_LOGIN)
-            cy.get('input[id="Password"]').type(VALID_PASSWORD)
+            cy.get('input[id="username"]').type(VALID_LOGIN)
+            cy.get('input[id="password"]').type(VALID_PASSWORD)
             cy.get('button[id="loginbtn"]').click()
             cy.url().should('eq', DASHBOARD_URL)  })
         })
@@ -35,8 +35,8 @@
              cy.visit(LOGIN_URL)
 
             // Enter valid username and password
-            cy.get('input[id="UserName"]').type(VALID_LOGIN)
-            cy.get('input[id="Password"]').type(VALID_PASSWORD)
+            cy.get('input[id="username"]').type(VALID_LOGIN)
+            cy.get('input[id="password"]').type(VALID_PASSWORD)
             cy.get('button[id="loginbtn"]').click()
              cy.url().should('eq', DASHBOARD_URL)
 
